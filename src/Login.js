@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
+
 import passwordHash from "password-hash";
 import emailValidator from "email-validator";
 
@@ -9,7 +11,8 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errorMessage: ""
+      errorMessage: "",
+      redirectTo: ""
     };
 
     this.hash = "";
@@ -45,14 +48,19 @@ export default class Login extends Component {
                 userObject.password
               );
               if (isPasswordMatch) {
-                console.log("Success " + userObject.email + " | " + userObject.role);
+                console.log(
+                  "Success " + userObject.email + " | " + userObject.role
+                );
+                this.setState({ redirectTo: userObject.role });
               } else {
-                  //invalid password
+                //invalid password
                 console.log("Wrong Pass");
+                this.setState({ errorMessage: "Wrong password" });
               }
             } else {
               //invalid userName
               console.log("Wrong Email");
+              this.setState({ errorMessage: "Wrong user name" });
             }
           })
           .catch(err => {
@@ -69,80 +77,83 @@ export default class Login extends Component {
   };
 
   render() {
+    if (this.state.redirectTo === "customer") {
+      return <Redirect to="/customerHome" />;
+    } else if (this.state.redirectTo === "retailer") {
+      return <Redirect to="/retailerHome" />;
+    }
     return (
-      <section className="login-block">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4 login-sec">
-              <h2 className="text-center">Login Now</h2>
-              <form className="login-form">
-                <div className="form-group">
-                  <label
-                    htmlFor="exampleInputEmail1"
-                    className="text-uppercase"
+      <React.Fragment>
+        <section className="login-block">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-4 login-sec">
+                <h2 className="text-center">Login Now</h2>
+                <form className="login-form">
+                  <div className="form-group">
+                    <label
+                      htmlFor="exampleInputEmail1"
+                      className="text-uppercase"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder=""
+                      value={this.state.email}
+                      onChange={this.handleEmailChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label
+                      htmlFor="exampleInputPassword1"
+                      className="text-uppercase"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder=""
+                      onChange={this.handlePasswordChange}
+                    />
+                  </div>
+                  <div
+                    className="alert alert-danger alert-dismissible"
+                    style={
+                      this.state.errorMessage
+                        ? { display: "block" }
+                        : { display: "none" }
+                    }
                   >
-                    Email
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder=""
-                    value={this.state.email}
-                    onChange={this.handleEmailChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label
-                    htmlFor="exampleInputPassword1"
-                    className="text-uppercase"
-                  >
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder=""
-                    onChange={this.handlePasswordChange}
-                  />
-                </div>
-                <div
-                  className="alert alert-danger alert-dismissible"
-                  style={
-                    this.state.errorMessage
-                      ? { display: "block" }
-                      : { display: "none" }
-                  }
-                >
-                  <strong>OOPS!</strong> {this.state.errorMessage}
-                </div>
-                <div className="form-check">
-                  <input type="checkbox" className="form-check-input" />
-                  <small>Remember Me</small>
-                  <button
-                    type="submit"
-                    className="btn btn-login float-right"
-                    onClick={this.handleSubmit}
-                  >
-                    Submit
-                  </button>
-                </div>
-                <div className="form-group text-center register">
-                  <h2 className="text-center">Register</h2>
-                  <button
-                    type="submit"
-                    className="btn btn-register center-block"
-                  >
-                    Register
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="col-md-8 login-sec">
-              <img src="cloths.jpeg" alt="Chania" />
+                    <strong>OOPS!</strong> {this.state.errorMessage}
+                  </div>
+                  <div className="form-check">
+                    <input type="checkbox" className="form-check-input" />
+                    <small>Remember Me</small>
+                    <button
+                      type="submit"
+                      className="btn btn-login float-right"
+                      onClick={this.handleSubmit}
+                    >
+                      Login
+                    </button>
+                  </div>
+                  <div className="form-group text-center register">
+                    <Link to="/register">
+                      <h2 className="text-center">Register</h2>
+                    </Link>
+                  </div>
+                </form>
+              </div>
+              <div className="col-md-8 login-sec">
+                <img src="cloths.jpeg" alt="Chania" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </React.Fragment>
     );
   }
 }
