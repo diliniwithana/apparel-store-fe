@@ -97,6 +97,17 @@ img {
 .register-text {
   margin: 100px;
 }
-#ss{
+#ss {
   display: inline;
+}
+#appName {
+  color: aliceblue;
+  font-size: xx-large;
+}
+#profile-pic {
+  height: 50px;
+}
+#profile-name {
+  color: aliceblue;
+  font-size: x-large;
 }
