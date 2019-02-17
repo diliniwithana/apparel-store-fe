@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+
 import {
   Collapse,
   Navbar,
@@ -14,14 +16,19 @@ export default class RetailerHome extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
-      errorMessage: ""
+      redirectTo: ""
     };
+    this.gotoAddShirt = this.gotoAddShirt.bind(this);
+  }
 
+  gotoAddShirt(event) {
+    this.setState({ redirectTo: "addShirt" });
   }
 
   render() {
+    if (this.state.redirectTo === "addShirt") {
+      return <Redirect to="/addShirt" />;
+    }
     return (
       <React.Fragment>
         <header>
@@ -36,18 +43,13 @@ export default class RetailerHome extends Component {
                   <img id="profile-pic" src="user.png" alt="profile-pic" />
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    id="profile-name"
-                    href="https://github.com/reactstrap/reactstrap"
-                  >
-                    Rich Look
-                  </NavLink>
+                  <NavLink id="profile-name">Rich Look</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
           </Navbar>
         </header>
-        <br></br>
+        <br />
         <div className="jumbotron p-3 p-md-5 text-white rounded bg-dark">
           <div className="col-md-6 px-0">
             <h1 className="display-4 font-italic">Welcome Rich Look</h1>
@@ -62,17 +64,20 @@ export default class RetailerHome extends Component {
           <div className="col-md-6">
             <div className="card flex-md-row mb-4 box-shadow h-md-250">
               <div className="card-body d-flex flex-column align-items-start">
-                <strong className="d-inline-block mb-2 text-primary">Add</strong>
+                <strong className="d-inline-block mb-2 text-primary">
+                  Add
+                </strong>
                 <h3 className="mb-0">
-                  <a className="text-dark" href="#">
+                  <a className="text-dark" href="#" onClick={this.gotoAddShirt}>
                     Add Garment Measurement
                   </a>
                 </h3>
                 <br />
                 <p className="card-text mb-auto">
-                  Garment can be added to the system with its finished garment measurements.
+                  Garment can be added to the system with its finished garment
+                  measurements.
                 </p>
-                <a href="#">Add Garment</a>
+                <a href="#" onClick={this.gotoAddShirt}>Add Garment</a>
               </div>
               <img
                 className="card-img-right flex-auto d-none d-lg-block"
@@ -87,7 +92,9 @@ export default class RetailerHome extends Component {
           <div className="col-md-6">
             <div className="card flex-md-row mb-4 box-shadow h-md-250">
               <div className="card-body d-flex flex-column align-items-start">
-                <strong className="d-inline-block mb-2 text-success">Edit</strong>
+                <strong className="d-inline-block mb-2 text-success">
+                  Edit
+                </strong>
                 <h3 className="mb-0">
                   <a className="text-dark" href="#">
                     Edit Garment Measurement
@@ -95,7 +102,8 @@ export default class RetailerHome extends Component {
                 </h3>
                 <br />{" "}
                 <p className="card-text mb-auto">
-                  Garment details can be updated using with new pictures and details
+                  Garment details can be updated using with new pictures and
+                  details
                 </p>
                 <a href="#">Edit Garment</a>
               </div>

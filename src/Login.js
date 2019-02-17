@@ -12,7 +12,8 @@ export default class Login extends Component {
       email: "",
       password: "",
       errorMessage: "",
-      redirectTo: ""
+      redirectTo: "",
+      userObject: {}
     };
 
     this.hash = "";
@@ -51,7 +52,12 @@ export default class Login extends Component {
                 console.log(
                   "Success " + userObject.email + " | " + userObject.role
                 );
-                this.setState({ redirectTo: userObject.role });
+                this.setState({
+                  redirectTo: userObject.role,
+                  userObject: userObject
+                });
+                localStorage.setItem("userData", JSON.stringify(userObject));
+                console.log(localStorage.getItem("userData"))
               } else {
                 //invalid password
                 console.log("Wrong Pass");

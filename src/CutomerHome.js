@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+
 import {
   Collapse,
   Navbar,
@@ -14,13 +16,30 @@ export default class CustomerHome extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
-      errorMessage: ""
+      redirectTo: "",
     };
+    this.viewProfile = this.viewProfile.bind(this);
+    this.goToResult = this.goToResult.bind(this);
+  }
+
+  viewProfile(event) {
+    this.setState({ redirectTo: "profile" });
+  }
+
+  goToResult(event) {
+    this.setState({ redirectTo: "result" });
+  }
+
+  componentDidMount() {
+   
   }
 
   render() {
+    if (this.state.redirectTo === "profile") {
+      return <Redirect to="/customerProfile" />;
+    } else if (this.state.redirectTo === "result") {
+      return <Redirect to="/result" />;
+    }
     return (
       <React.Fragment>
         <header>
@@ -35,11 +54,8 @@ export default class CustomerHome extends Component {
                   <img id="profile-pic" src="user.png" alt="profile-pic" />
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    id="profile-name"
-                    href="https://github.com/reactstrap/reactstrap"
-                  >
-                    Dilini Withana
+                  <NavLink id="profile-name" onClick={this.viewProfile}>
+                    Guest User
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -48,11 +64,22 @@ export default class CustomerHome extends Component {
         </header>
         <br />
 
+        <div className="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+          <div className="col-md-6 px-0">
+            <h1 className="display-4 font-italic">Welcome Guest User</h1>
+            <p className="lead my-3">
+              Choose the apparel item of your choice and click{" "}
+              <i>Check Fitness Levels</i> button to view the correct fitness
+              levels against your own body measurements.
+            </p>
+          </div>
+        </div>
+
         <div class="container">
           <div class="card-deck mb-3 text-center">
             <div class="card mb-4 box-shadow">
               <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Free</h4>
+                <h4 class="my-0 font-weight-normal">Emarold</h4>
               </div>
               <div class="card-body">
                 <img
@@ -62,22 +89,18 @@ export default class CustomerHome extends Component {
                   style={{ width: "200px", height: "250px" }}
                 />
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>10 users included</li>
-                  <li>2 GB of storage</li>
-                  <li>Email support</li>
-                  <li>Help center access</li>
+                  <li>Size: 16 inch</li>
+                  <li>Color: Checked</li>
+                  <li>Type: Loose-fit</li>
                 </ul>
-                <button
-                  type="button"
-                  class="btn btn-lg btn-block btn-outline-primary"
-                >
-                  Sign up for free
+                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={this.goToResult}>
+                  Check Fitness Level
                 </button>
               </div>
             </div>
             <div class="card mb-4 box-shadow">
               <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Pro</h4>
+                <h4 class="my-0 font-weight-normal">Signature</h4>
               </div>
               <div class="card-body">
                 <img
@@ -87,35 +110,33 @@ export default class CustomerHome extends Component {
                   style={{ width: "200px", height: "250px" }}
                 />
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>20 users included</li>
-                  <li>10 GB of storage</li>
-                  <li>Priority email support</li>
-                  <li>Help center access</li>
+                  <li>Size: 16 inch</li>
+                  <li>Color: Checked</li>
+                  <li>Type: Smart-fit</li>
                 </ul>
                 <button type="button" class="btn btn-lg btn-block btn-primary">
-                  Get started
+                  Check Fitness Level
                 </button>
               </div>
             </div>
             <div class="card mb-4 box-shadow">
               <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Enterprise</h4>
+                <h4 class="my-0 font-weight-normal">Lacoste</h4>
               </div>
               <div class="card-body">
                 <img
-                  src="shirt3.jpeg"
+                  src="shirt5.jpeg"
                   alt="shirt"
                   data-holder-rendered="true"
                   style={{ width: "200px", height: "250px" }}
                 />
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>30 users included</li>
-                  <li>15 GB of storage</li>
-                  <li>Phone and email support</li>
-                  <li>Help center access</li>
+                  <li>Size: 16 inch</li>
+                  <li>Color: Lighr blue</li>
+                  <li>Type: Loose-fit</li>
                 </ul>
                 <button type="button" class="btn btn-lg btn-block btn-primary">
-                  Contact us
+                  Check Fitness Level
                 </button>
               </div>
             </div>
