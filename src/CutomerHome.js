@@ -26,7 +26,8 @@ export default class CustomerHome extends Component {
     this.setState({ redirectTo: "profile" });
   }
 
-  goToResult(event) {
+  goToResult(event, shirtId) {
+    localStorage.setItem("clickedShirtId", shirtId)
     this.setState({ redirectTo: "result" });
   }
 
@@ -93,7 +94,7 @@ export default class CustomerHome extends Component {
                   <li>Color: Checked</li>
                   <li>Type: Loose-fit</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={this.goToResult}>
+                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={() => this.goToResult(this, "1")}>
                   Check Fitness Level
                 </button>
               </div>
@@ -114,7 +115,7 @@ export default class CustomerHome extends Component {
                   <li>Color: Checked</li>
                   <li>Type: Smart-fit</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">
+                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={() => this.goToResult(this, "2")}>
                   Check Fitness Level
                 </button>
               </div>
@@ -135,7 +136,7 @@ export default class CustomerHome extends Component {
                   <li>Color: Lighr blue</li>
                   <li>Type: Loose-fit</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">
+                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={() => this.goToResult(this, "3")}>
                   Check Fitness Level
                 </button>
               </div>
