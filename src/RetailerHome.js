@@ -61,7 +61,7 @@ export default class RetailerHome extends Component {
         </div>
 
         <div className="row mb-2">
-          <div className="col-md-6">
+          <div className="col-md-4">
             <div className="card flex-md-row mb-4 box-shadow h-md-250">
               <div className="card-body d-flex flex-column align-items-start">
                 <strong className="d-inline-block mb-2 text-primary">
@@ -69,7 +69,7 @@ export default class RetailerHome extends Component {
                 </strong>
                 <h3 className="mb-0">
                   <a className="text-dark" href="#" onClick={this.gotoAddShirt}>
-                    Add Garment Measurement
+                    Add Garment Measurements Manually
                   </a>
                 </h3>
                 <br />
@@ -77,7 +77,9 @@ export default class RetailerHome extends Component {
                   Garment can be added to the system with its finished garment
                   measurements.
                 </p>
-                <a href="#" onClick={this.gotoAddShirt}>Add Garment</a>
+                <a href="#" onClick={this.gotoAddShirt}>
+                  Add Garment
+                </a>
               </div>
               <img
                 className="card-img-right flex-auto d-none d-lg-block"
@@ -89,7 +91,39 @@ export default class RetailerHome extends Component {
               />
             </div>
           </div>
-          <div className="col-md-6">
+
+          <div className="col-md-4">
+            <div className="card flex-md-row mb-4 box-shadow h-md-250">
+              <div className="card-body d-flex flex-column align-items-start">
+                <strong className="d-inline-block mb-2 text-primary">
+                  Add
+                </strong>
+                <h3 className="mb-0">
+                  <a className="text-dark" href="#" onClick={this.gotoAddShirt}>
+                    Image Processing Measurements
+                  </a>
+                </h3>
+                <br />
+                <p className="card-text mb-auto">
+                  Garment can be added to the system with its finished garment
+                  measurements.
+                </p>
+                <a href="#" onClick={this.gotoAddShirt}>
+                  Add Garment
+                </a>
+              </div>
+              <img
+                className="card-img-right flex-auto d-none d-lg-block"
+                data-src="holder.js/200x250?theme=thumb"
+                alt="Thumbnail [200x250]"
+                style={{ width: "200px", height: "250px" }}
+                src="image_process.png"
+                data-holder-rendered="true"
+              />
+            </div>
+          </div>
+
+          <div className="col-md-4">
             <div className="card flex-md-row mb-4 box-shadow h-md-250">
               <div className="card-body d-flex flex-column align-items-start">
                 <strong className="d-inline-block mb-2 text-success">

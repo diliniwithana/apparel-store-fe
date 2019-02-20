@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import ReactImageMagnify from "react-image-magnify";
 
 import {
   Collapse,
@@ -16,7 +17,7 @@ export default class CustomerHome extends Component {
     super(props);
 
     this.state = {
-      redirectTo: "",
+      redirectTo: ""
     };
     this.viewProfile = this.viewProfile.bind(this);
     this.goToResult = this.goToResult.bind(this);
@@ -27,13 +28,11 @@ export default class CustomerHome extends Component {
   }
 
   goToResult(event, shirtId) {
-    localStorage.setItem("clickedShirtId", shirtId)
+    localStorage.setItem("clickedShirtId", shirtId);
     this.setState({ redirectTo: "result" });
   }
 
-  componentDidMount() {
-   
-  }
+  componentDidMount() {}
 
   render() {
     if (this.state.redirectTo === "profile") {
@@ -83,18 +82,34 @@ export default class CustomerHome extends Component {
                 <h4 class="my-0 font-weight-normal">Emarold</h4>
               </div>
               <div class="card-body">
-                <img
-                  src="shirt1.jpeg"
-                  alt="shirt"
-                  data-holder-rendered="true"
-                  style={{ width: "200px", height: "250px" }}
-                />
+                <div className="image-1">
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: "Wristwatch by Ted Baker London",
+                        isFluidWidth: true,
+                        src: "shirt1.jpeg"
+                      },
+                      largeImage: {
+                        src: "shirt1.jpeg",
+                        width: 1200,
+                        height: 1800
+                      },
+                      enlargedImagePosition: "over"
+                    }}
+                  />
+                </div>
+                <br />
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Size: 16 inch</li>
                   <li>Color: Checked</li>
                   <li>Type: Loose-fit</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={() => this.goToResult(this, "1")}>
+                <button
+                  type="button"
+                  class="btn btn-lg btn-block btn-primary"
+                  onClick={() => this.goToResult(this, "1")}
+                >
                   Check Fitness Level
                 </button>
               </div>
@@ -104,18 +119,34 @@ export default class CustomerHome extends Component {
                 <h4 class="my-0 font-weight-normal">Signature</h4>
               </div>
               <div class="card-body">
-                <img
-                  src="shirt2.jpeg"
-                  alt="shirt"
-                  data-holder-rendered="true"
-                  style={{ width: "200px", height: "250px" }}
-                />
+                <div className="image-1">
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: "Wristwatch by Ted Baker London",
+                        isFluidWidth: true,
+                        src: "shirt2.jpeg"
+                      },
+                      largeImage: {
+                        src: "shirt2.jpeg",
+                        width: 1200,
+                        height: 1800
+                      },
+                      enlargedImagePosition: "over"
+                    }}
+                  />
+                </div>
+                <br />
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Size: 16 inch</li>
                   <li>Color: Checked</li>
                   <li>Type: Smart-fit</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={() => this.goToResult(this, "2")}>
+                <button
+                  type="button"
+                  class="btn btn-lg btn-block btn-primary"
+                  onClick={() => this.goToResult(this, "2")}
+                >
                   Check Fitness Level
                 </button>
               </div>
@@ -125,18 +156,34 @@ export default class CustomerHome extends Component {
                 <h4 class="my-0 font-weight-normal">Lacoste</h4>
               </div>
               <div class="card-body">
-                <img
-                  src="shirt5.jpeg"
-                  alt="shirt"
-                  data-holder-rendered="true"
-                  style={{ width: "200px", height: "250px" }}
-                />
+                <div className="image-1">
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: "Wristwatch by Ted Baker London",
+                        isFluidWidth: true,
+                        src: "shirt4.jpeg"
+                      },
+                      largeImage: {
+                        src: "shirt4.jpeg",
+                        width: 1200,
+                        height: 1800
+                      },
+                      enlargedImagePosition: "over"
+                    }}
+                  />
+                </div>
+                <br />
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Size: 16 inch</li>
                   <li>Color: Lighr blue</li>
                   <li>Type: Loose-fit</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary" onClick={() => this.goToResult(this, "3")}>
+                <button
+                  type="button"
+                  class="btn btn-lg btn-block btn-primary"
+                  onClick={() => this.goToResult(this, "3")}
+                >
                   Check Fitness Level
                 </button>
               </div>

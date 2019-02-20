@@ -182,9 +182,13 @@ body {
   padding: 20px;
   height: 220px;
 }
-#addShirtBtn{
+#addShirtBtn {
   width: inherit;
 }
-#v-fit-badge{
+#v-fit-badge {
   cursor: pointer;
+}
+.image-1 {
+  width: 100%;
+  height: 60%;
 }
