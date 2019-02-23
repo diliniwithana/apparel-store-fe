@@ -306,7 +306,7 @@ export default class ResultsPage extends Component {
             <div className="container">
               <div className="col-md- login-sec">
                 <img
-                  src="loader-bar.gif"
+                  src="loader-circle.gif"
                   className="rounded mx-auto d-block"
                   alt="loader..."
                 />
