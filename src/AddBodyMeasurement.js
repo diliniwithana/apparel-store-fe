@@ -9,16 +9,26 @@ import {
   NavLink
 } from "reactstrap";
 import { Redirect } from "react-router-dom";
+import Modal from "react-responsive-modal";
 
 export default class AddBodyMeasurement extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectTo: ""
+      redirectTo: "",
+      open: false
     };
     this.viewProfile = this.viewProfile.bind(this);
     this.goToHome = this.goToHome.bind(this);
   }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
 
   goToHome(event) {
     this.setState({ redirectTo: "customerHome" });
@@ -28,9 +38,10 @@ export default class AddBodyMeasurement extends Component {
   }
 
   render() {
+    const { open } = this.state;
     if (this.state.redirectTo === "profile") {
       return <Redirect to="/customerProfile" />;
-    }else if (this.state.redirectTo === "customerHome") {
+    } else if (this.state.redirectTo === "customerHome") {
       return <Redirect to="/customerHome" />;
     }
     return (
@@ -60,6 +71,13 @@ export default class AddBodyMeasurement extends Component {
           </Navbar>
         </header>
         <br />
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <div className="row">
+            <div className="col-md-12 login-sec">
+              <img src="body-guid.jpg" alt="" />
+            </div>
+          </div>
+        </Modal>
 
         <div
           className="container bg-dark text-white"
@@ -71,7 +89,9 @@ export default class AddBodyMeasurement extends Component {
           >
             Add Body Measurement
           </h4>
-
+          <button className="btn btn-help" onClick={this.onOpenModal}>
+            Help in Measurements
+          </button>
           <div className="row">
             <div className="col-md-4 login-sec">
               <h4>
@@ -83,7 +103,7 @@ export default class AddBodyMeasurement extends Component {
                     htmlFor="exampleInputEmail1"
                     className="text-capitalize"
                   >
-                    Neck girth
+                    Neck girth <span className="badge badge-secondary">1</span>
                   </label>
                   <input
                     type="text"
@@ -112,7 +132,7 @@ export default class AddBodyMeasurement extends Component {
                     htmlFor="exampleInputEmail1"
                     className="text-capitalize"
                   >
-                    Chest
+                    Chest <span className="badge badge-secondary">2</span>
                   </label>
                   <input
                     type="text"
@@ -127,7 +147,7 @@ export default class AddBodyMeasurement extends Component {
                     htmlFor="exampleInputEmail1"
                     className="text-capitalize"
                   >
-                    Hip
+                    Hip <span className="badge badge-secondary">5</span>
                   </label>
                   <input
                     type="text"
@@ -150,7 +170,7 @@ export default class AddBodyMeasurement extends Component {
                     htmlFor="exampleInputEmail1"
                     className="text-capitalize"
                   >
-                    Waist
+                    Waist <span className="badge badge-secondary">4</span>
                   </label>
                   <input
                     type="text"

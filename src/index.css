@@ -101,6 +101,13 @@ code {
   color: #fff;
   font-weight: 600;
 }
+.btn-help {
+  background: #de6262;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-left: 10px;
+}
 .btn-register {
   background: #ff8f59;
   color: #fff;

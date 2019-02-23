@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import Modal from "react-responsive-modal";
 
 import {
   Collapse,
@@ -14,15 +15,25 @@ export default class AddShirtMeasurement extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectTo: ""
+      redirectTo: "",
+      open: false
     };
     this.goToHome = this.goToHome.bind(this);
   }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
 
   goToHome(event) {
     this.setState({ redirectTo: "retailerHome" });
   }
   render() {
+    const { open } = this.state;
     if (this.state.redirectTo === "retailerHome") {
       return <Redirect to="/retailerHome" />;
     }
@@ -40,10 +51,7 @@ export default class AddShirtMeasurement extends Component {
                   <img id="profile-pic" src="user.png" alt="profile-pic" />
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    id="profile-name"
-                    href="#"
-                  >
+                  <NavLink id="profile-name" href="#">
                     Guest User
                   </NavLink>
                 </NavItem>
@@ -52,6 +60,14 @@ export default class AddShirtMeasurement extends Component {
           </Navbar>
         </header>
         <br />
+
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <div className="row">
+            <div className="col-md-12 login-sec">
+              <img src="shirt-guid.jpg" alt="" />
+            </div>
+          </div>
+        </Modal>
 
         <div
           className="container bg-dark text-white"
@@ -63,7 +79,9 @@ export default class AddShirtMeasurement extends Component {
           >
             Add Shirt Measurement
           </h4>
-
+          <button className="btn btn-help" onClick={this.onOpenModal}>
+            Help in Measurements
+          </button>
           <div className="row">
             <div className="col-md-4 login-sec">
               <h4>
@@ -75,7 +93,8 @@ export default class AddShirtMeasurement extends Component {
                     htmlFor="exampleInputEmail1"
                     className="text-capitalize"
                   >
-                    Length from shoulder
+                    Length from shoulder{" "}
+                    <span class="badge badge-secondary">E</span>
                   </label>
                   <input
                     type="text"
@@ -335,13 +354,10 @@ export default class AddShirtMeasurement extends Component {
                     <label for="imageUpload" />
                   </div>
                   <div class="avatar-preview">
-                    <div
-                      id="imagePreview"
-                      style={{
-                        "background-image":
-                          "url(http://i.pravatar.cc/500?img=2)"
-                      }}
-                    />
+                    <div id="imagePreview">
+                      {" "}
+                      <img src="cloth1.jpeg" />{" "}
+                    </div>
                   </div>
                 </div>
               </div>
