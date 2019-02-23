@@ -16,6 +16,7 @@ export default class ResultsPage extends Component {
     super(props);
 
     this.state = {
+      loadNow: false,
       redirectTo: "",
       userData: {},
       shirtId: "",
@@ -242,6 +243,13 @@ export default class ResultsPage extends Component {
   }
 
   componentDidMount() {
+    // for page loader
+    setTimeout(
+      function() {
+        this.setState({ loadNow: true });
+      }.bind(this),
+      5000
+    );
     // get user data
     this.setState({ userData: JSON.parse(localStorage.getItem("userData")) });
     // get shirt data
@@ -291,12 +299,37 @@ export default class ResultsPage extends Component {
     } else if (this.state.redirectTo === "addBody") {
       return <Redirect to="/addBody" />;
     }
+    if (!this.state.loadNow) {
+      return (
+        <React.Fragment>
+          <section className="login-block-loader">
+            <div className="container">
+              <div className="col-md- login-sec">
+                <img
+                  src="loader-bar.gif"
+                  className="rounded mx-auto d-block"
+                  alt="loader..."
+                />
+              </div>
+
+              <div class="center loading-msg">
+                <img
+                  src="text-animation.gif"
+                  className="rounded mx-auto d-block"
+                  alt="loader..."
+                />
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      );
+    }
     return (
       <React.Fragment>
         <header>
           <Navbar color="dark" light expand="md">
             <NavbarBrand id="appName" onClick={this.goToHome}>
-              FitsMe {this.state.shirtId}
+              FitsMe
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>

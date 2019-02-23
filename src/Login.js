@@ -57,7 +57,7 @@ export default class Login extends Component {
                   userObject: userObject
                 });
                 localStorage.setItem("userData", JSON.stringify(userObject));
-                console.log(localStorage.getItem("userData"))
+                console.log(localStorage.getItem("userData"));
               } else {
                 //invalid password
                 console.log("Wrong Pass");
