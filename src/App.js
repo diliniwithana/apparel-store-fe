@@ -13,6 +13,8 @@ import CustomerProfile from "./CustomerProfile"
 import AddShirtMeasurement from "./AddShirtMeasurement";
 import AddBodyMeasurement from "./AddBodyMeasurement";
 import ResultsPage from "./ResultsPage";
+import AddShirtImageProcessing from "./AddShirtImageProcessing"
+import ImageProcessingResult from "./ImageProcessingResult"
 class App extends Component {
   render() {
     return (
@@ -27,6 +29,8 @@ class App extends Component {
             <Route path="/addShirt" component={AddShirtMeasurement} />
             <Route path="/addBody" component={AddBodyMeasurement} />
             <Route path="/result" component={ResultsPage} />
+            <Route path="/imageProcess" component={AddShirtImageProcessing} />
+            <Route path="/imageProcessingResult" component={ImageProcessingResult} />
           </Switch>
         </React.Fragment>
       </Router>

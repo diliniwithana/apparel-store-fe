@@ -16,19 +16,64 @@ export default class RetailerHome extends Component {
     super(props);
 
     this.state = {
-      redirectTo: ""
+      redirectTo: "",
+      loadNow: false
     };
     this.gotoAddShirt = this.gotoAddShirt.bind(this);
+    this.gotoAddShirtImageProcessing = this.gotoAddShirtImageProcessing.bind(
+      this
+    );
+  }
+  componentDidMount() {
+    setTimeout(
+      function() {
+        this.setState({ loadNow: true });
+      }.bind(this),
+      1000
+    );
   }
 
   gotoAddShirt(event) {
     this.setState({ redirectTo: "addShirt" });
   }
 
+  gotoAddShirtImageProcessing(event) {
+    this.setState({ redirectTo: "imageProcess" });
+  }
+
   render() {
     if (this.state.redirectTo === "addShirt") {
       return <Redirect to="/addShirt" />;
+    } else if (this.state.redirectTo === "imageProcess") {
+      return <Redirect to="/imageProcess" />;
     }
+
+    if (!this.state.loadNow) {
+      return (
+        <React.Fragment>
+          <section className="login-block-loader">
+            <div className="container">
+              <div className="col-md- login-sec">
+                <img
+                  src="loader-circle.gif"
+                  className="rounded mx-auto d-block"
+                  alt="loader..."
+                />
+              </div>
+
+              <div class="center loading-msg">
+                <img
+                  src="loading.gif"
+                  className="rounded mx-auto d-block"
+                  alt="loader..."
+                />
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      );
+    }
+
     return (
       <React.Fragment>
         <header>
@@ -99,16 +144,20 @@ export default class RetailerHome extends Component {
                   Add
                 </strong>
                 <h3 className="mb-0">
-                  <a className="text-dark" href="#" onClick={this.gotoAddShirt}>
+                  <a
+                    className="text-dark"
+                    href="#"
+                    onClick={this.gotoAddShirtImageProcessing}
+                  >
                     Image Processing Measurements
                   </a>
                 </h3>
                 <br />
                 <p className="card-text mb-auto">
-                  Garment can be added to the system with its finished garment
-                  measurements.
+                  Garment can be added to the system with the help of image
+                  processing tools
                 </p>
-                <a href="#" onClick={this.gotoAddShirt}>
+                <a href="#" onClick={this.gotoAddShirtImageProcessing}>
                   Add Garment
                 </a>
               </div>

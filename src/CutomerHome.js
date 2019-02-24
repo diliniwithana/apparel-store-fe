@@ -17,7 +17,8 @@ export default class CustomerHome extends Component {
     super(props);
 
     this.state = {
-      redirectTo: ""
+      redirectTo: "",
+      loadNow: false
     };
     this.viewProfile = this.viewProfile.bind(this);
     this.goToResult = this.goToResult.bind(this);
@@ -32,7 +33,14 @@ export default class CustomerHome extends Component {
     this.setState({ redirectTo: "result" });
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    setTimeout(
+      function() {
+        this.setState({ loadNow: true });
+      }.bind(this),
+      1000
+    );
+  }
 
   render() {
     if (this.state.redirectTo === "profile") {
@@ -40,6 +48,33 @@ export default class CustomerHome extends Component {
     } else if (this.state.redirectTo === "result") {
       return <Redirect to="/result" />;
     }
+
+    if (!this.state.loadNow) {
+      return (
+        <React.Fragment>
+          <section className="login-block-loader">
+            <div className="container">
+              <div className="col-md- login-sec">
+                <img
+                  src="loader-circle.gif"
+                  className="rounded mx-auto d-block"
+                  alt="loader..."
+                />
+              </div>
+
+              <div class="center loading-msg">
+                <img
+                  src="loading.gif"
+                  className="rounded mx-auto d-block"
+                  alt="loader..."
+                />
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      );
+    }
+
     return (
       <React.Fragment>
         <header>

@@ -21,6 +21,7 @@ export default class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
