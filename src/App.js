@@ -10,6 +10,7 @@ import Register from "./Register";
 import CustomerHome from "./CutomerHome";
 import RetailerHome from "./RetailerHome";
 import CustomerProfile from "./CustomerProfile"
+import RetailerProfile from "./RetailerProfile"
 import AddShirtMeasurement from "./AddShirtMeasurement";
 import AddBodyMeasurement from "./AddBodyMeasurement";
 import ResultsPage from "./ResultsPage";
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/customerHome" component={CustomerHome} />
             <Route path="/retailerHome" component={RetailerHome} />
             <Route path="/customerProfile" component={CustomerProfile} />
+            <Route path="/retailerProfile" component={RetailerProfile} />
             <Route path="/addShirt" component={AddShirtMeasurement} />
             <Route path="/addBody" component={AddBodyMeasurement} />
             <Route path="/result" component={ResultsPage} />

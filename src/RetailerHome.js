@@ -17,17 +17,23 @@ export default class RetailerHome extends Component {
 
     this.state = {
       redirectTo: "",
-      loadNow: false
+      loadNow: false,
+      userData: {}
     };
     this.gotoAddShirt = this.gotoAddShirt.bind(this);
+    this.viewProfile = this.viewProfile.bind(this);
     this.gotoAddShirtImageProcessing = this.gotoAddShirtImageProcessing.bind(
       this
     );
   }
+
+  viewProfile(event) {
+    this.setState({ redirectTo: "profile" });
+  }
   componentDidMount() {
     setTimeout(
       function() {
-        this.setState({ loadNow: true });
+        this.setState({ loadNow: true , userData: JSON.parse(localStorage.getItem("userData")) });
       }.bind(this),
       1000
     );
@@ -46,6 +52,8 @@ export default class RetailerHome extends Component {
       return <Redirect to="/addShirt" />;
     } else if (this.state.redirectTo === "imageProcess") {
       return <Redirect to="/imageProcess" />;
+    } else if (this.state.redirectTo === "profile") {
+      return <Redirect to="/retailerProfile" />;
     }
 
     if (!this.state.loadNow) {
@@ -88,7 +96,7 @@ export default class RetailerHome extends Component {
                   <img id="profile-pic" src="user.png" alt="profile-pic" />
                 </NavItem>
                 <NavItem>
-                  <NavLink id="profile-name">Rich Look</NavLink>
+                  <NavLink id="profile-name"  onClick={this.viewProfile} >Rich Look</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
