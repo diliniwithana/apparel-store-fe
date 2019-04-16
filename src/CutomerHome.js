@@ -22,6 +22,7 @@ export default class CustomerHome extends Component {
     };
     this.viewProfile = this.viewProfile.bind(this);
     this.goToResult = this.goToResult.bind(this);
+    
   }
 
   viewProfile(event) {

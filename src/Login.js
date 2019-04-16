@@ -40,7 +40,7 @@ export default class Login extends Component {
     if (this.validateForm()) {
       let { email, password } = this.state;
       if (emailValidator.validate(email)) {
-        //fetch
+        //fetch from the API
         fetch(`http://localhost:3001/users/login/${email}`)
           .then(response => response.json())
           .then(userObject => {

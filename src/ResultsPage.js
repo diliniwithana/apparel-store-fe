@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import ReactImageMagnify from "react-image-magnify";
 
 import {
   Collapse,
@@ -38,6 +39,7 @@ export default class ResultsPage extends Component {
     this.compChest = this.compChest.bind(this);
     this.compArmGirth = this.compArmGirth.bind(this);
     this.compArmLength = this.compArmLength.bind(this);
+    this.goToResult = this.goToResult.bind(this);
   }
 
   calculate2DComparison() {
@@ -59,21 +61,6 @@ export default class ResultsPage extends Component {
       this.body_upperArmLength = this.bodyObj.upperArmLength;
       this.body_length = this.bodyObj.sideNeckToWaist + this.bodyObj.waistToHip;
       this.body_lowerArmGirth = this.bodyObj.armGirth;
-      console.log("<Human>===============");
-      console.log(
-        "Shoulder: " +
-          this.body_shoulder +
-          " Chest: " +
-          this.body_chest +
-          " Hip: " +
-          this.body_hip +
-          " UpperArmLength: " +
-          this.body_upperArmLength +
-          " Length: " +
-          this.body_length +
-          " LowerArmGirth: " +
-          this.body_lowerArmGirth
-      );
 
       // shirt calculations
       console.log("Start calculation of shirt-measurements...");
@@ -88,21 +75,6 @@ export default class ResultsPage extends Component {
       this.shirt_upperArmLength = this.shirtObj.upperArmLength + y;
       this.shirt_length = this.shirtObj.lengthFromMiddle + b;
       this.shirt_lowerArmGirth = this.shirtObj.lowerGirth + x;
-      console.log("<Shirt>===============");
-      console.log(
-        "Shoulder: " +
-          this.shirt_shoulder +
-          " Chest: " +
-          this.shirt_chest +
-          " Hip: " +
-          this.shirt_hip +
-          " UpperArmLength: " +
-          this.shirt_upperArmLength +
-          " Length: " +
-          this.shirt_length +
-          " LowerArmGirth: " +
-          this.shirt_lowerArmGirth
-      );
 
       // compare shoulder measurements
       this.setState({
@@ -140,6 +112,13 @@ export default class ResultsPage extends Component {
     }
   }
 
+  /**
+   * This function calculated the arm length
+   * fitness level
+   * @param  {Double} m1 - body_upperArmLength
+   * @param  {Double} m2 - shirt_upperArmLength
+   * @returns {String} arm length fitness level
+   */
   compArmLength(m1, m2) {
     if (m1 > m2) {
       return "Shirt is small";
@@ -148,6 +127,13 @@ export default class ResultsPage extends Component {
     }
   }
 
+  /**
+   * This function calculated the arm girth
+   * fitness level
+   * @param  {Double} m1 - body_upperArmGirth
+   * @param  {Double} m2 - shirt_upperArmGirth
+   * @returns {String} arm girth fitness level
+   */
   compArmGirth(m1, m2) {
     /*
         Small = Difference < 0.3
@@ -242,6 +228,11 @@ export default class ResultsPage extends Component {
     this.setState({ redirectTo: "addBody" });
   }
 
+  goToResult(event, shirtId) {
+    localStorage.setItem("clickedShirtId", shirtId);
+    this.setState({ redirectTo: "result" });
+  }
+
   componentDidMount() {
     // for page loader
     setTimeout(
@@ -298,6 +289,8 @@ export default class ResultsPage extends Component {
       return <Redirect to="/customerHome" />;
     } else if (this.state.redirectTo === "addBody") {
       return <Redirect to="/addBody" />;
+    } else if (this.state.redirectTo === "result") {
+      window.location.reload();
     }
     if (!this.state.loadNow) {
       return (
@@ -404,7 +397,143 @@ export default class ResultsPage extends Component {
               />
             </div>
           </div>
+
+          <div class="progress">
+            <div
+              class="progress-bar bg-warning"
+              role="progressbar"
+              style={{ width: "100%" }}
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="text-center">
+            <span class="badge badge-warning">
+              <h3>Recommended Shirts For You</h3>{" "}
+            </span>
+          </div>
+          <div className="row text-center">
+            <div className="col-md-4 login-sec">
+              <div class="card mb-4 box-shadow">
+                <div class="card-header text-white bg-secondary">
+                  <h4 class="my-0 font-weight-normal">Emarold</h4>
+                </div>
+                <div class="card-body text-white bg-secondary">
+                  <div className="image-1">
+                    <ReactImageMagnify
+                      {...{
+                        smallImage: {
+                          alt: "Wristwatch by Ted Baker London",
+                          isFluidWidth: true,
+                          src: "shirt1.jpeg"
+                        },
+                        largeImage: {
+                          src: "shirt1.jpeg",
+                          width: 1200,
+                          height: 1800
+                        },
+                        enlargedImagePosition: "over"
+                      }}
+                    />
+                  </div>
+                  <br />
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Size: 16 inch</li>
+                    <li>Color: Checked</li>
+                    <li>Type: Loose-fit</li>
+                  </ul>
+                  <button
+                    type="button"
+                    class="btn btn-lg btn-block btn-primary"
+                    onClick={() => this.goToResult(this, "1")}
+                  >
+                    Check Fitness Level
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 login-sec">
+              <div class="card mb-4 box-shadow">
+                <div class="card-header text-white bg-secondary">
+                  <h4 class="my-0 font-weight-normal">Signature</h4>
+                </div>
+                <div class="card-body text-white bg-secondary">
+                  <div className="image-1">
+                    <ReactImageMagnify
+                      {...{
+                        smallImage: {
+                          alt: "Wristwatch by Ted Baker London",
+                          isFluidWidth: true,
+                          src: "shirt2.jpeg"
+                        },
+                        largeImage: {
+                          src: "shirt2.jpeg",
+                          width: 1200,
+                          height: 1800
+                        },
+                        enlargedImagePosition: "over"
+                      }}
+                    />
+                  </div>
+                  <br />
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Size: 16 inch</li>
+                    <li>Color: Checked</li>
+                    <li>Type: Smart-fit</li>
+                  </ul>
+                  <button
+                    type="button"
+                    class="btn btn-lg btn-block btn-primary"
+                    onClick={() => this.goToResult(this, "2")}
+                  >
+                    Check Fitness Level
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 login-sec">
+              <div class="card mb-4 box-shadow">
+                <div class="card-header text-white bg-secondary">
+                  <h4 class="my-0 font-weight-normal">Lacoste</h4>
+                </div>
+                <div class="card-body text-white bg-secondary">
+                  <div className="image-1">
+                    <ReactImageMagnify
+                      {...{
+                        smallImage: {
+                          alt: "Wristwatch by Ted Baker London",
+                          isFluidWidth: true,
+                          src: "shirt4.jpeg"
+                        },
+                        largeImage: {
+                          src: "shirt4.jpeg",
+                          width: 1200,
+                          height: 1800
+                        },
+                        enlargedImagePosition: "over"
+                      }}
+                    />
+                  </div>
+                  <br />
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Size: 16 inch</li>
+                    <li>Color: Lighr blue</li>
+                    <li>Type: Loose-fit</li>
+                  </ul>
+                  <button
+                    type="button"
+                    class="btn btn-lg btn-block btn-primary"
+                    onClick={() => this.goToResult(this, "3")}
+                  >
+                    Check Fitness Level
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <br />
       </React.Fragment>
     );
