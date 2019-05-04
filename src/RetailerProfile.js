@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import classnames from 'classnames';
+import classnames from "classnames";
 import ReactImageMagnify from "react-image-magnify";
 import {
   TabContent,
@@ -107,7 +107,19 @@ export default class RetailerProfile extends Component {
                         this.toggle("2");
                       }}
                     >
-                      View 
+                      View Added Garment Items
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({
+                        active: this.state.activeTab === "3"
+                      })}
+                      onClick={() => {
+                        this.toggle("3");
+                      }}
+                    >
+                      Retailer Dashboard
                     </NavLink>
                   </NavItem>
                 </Nav>
@@ -115,189 +127,213 @@ export default class RetailerProfile extends Component {
                   <TabPane tabId="1">
                     <Row>
                       <Col sm="12">
-                      <h4 className="my-0 font-weight-normal">Personal Info</h4>
-                      <br />
-                      <form className="login-form">
-                        <div className="form-group">
-                          <label
-                            htmlFor="exampleInputEmail1"
-                            className="text-uppercase"
+                        <h4 className="my-0 font-weight-normal">
+                          Personal Info
+                        </h4>
+                        <br />
+                        <form className="login-form">
+                          <div className="form-group">
+                            <label
+                              htmlFor="exampleInputEmail1"
+                              className="text-uppercase"
+                            >
+                              Name
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder=""
+                              value={this.state.userData.name}
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              htmlFor="exampleInputPassword1"
+                              className="text-uppercase"
+                            >
+                              Email
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder=""
+                              value={this.state.userData.email}
+                              onChange={this.handlePasswordChange}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              htmlFor="exampleInputEmail1"
+                              className="text-uppercase"
+                            >
+                              Shop Address
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder=""
+                              value={this.state.userData.address}
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              htmlFor="exampleInputEmail1"
+                              className="text-uppercase"
+                            >
+                              Contact Number
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder=""
+                              value={this.state.userData.primaryContact}
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              htmlFor="exampleInputEmail1"
+                              className="text-uppercase"
+                            >
+                              Shop Name
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder=""
+                              value={"Rich Look"}
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              htmlFor="exampleInputEmail1"
+                              className="text-uppercase"
+                            >
+                              Shop Contact Number
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder=""
+                              value={"011410897"}
+                              onChange={this.handleEmailChange}
+                            />
+                          </div>
+                          <div
+                            className="alert alert-danger alert-dismissible"
+                            style={
+                              this.state.errorMessage
+                                ? { display: "block" }
+                                : { display: "none" }
+                            }
                           >
-                            Name
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder=""
-                            value={this.state.userData.name}
-                            onChange={this.handleEmailChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label
-                            htmlFor="exampleInputPassword1"
-                            className="text-uppercase"
-                          >
-                            Email
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder=""
-                            value={this.state.userData.email}
-                            onChange={this.handlePasswordChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label
-                            htmlFor="exampleInputEmail1"
-                            className="text-uppercase"
-                          >
-                            Shop Address
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder=""
-                            value={this.state.userData.address}
-                            onChange={this.handleEmailChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label
-                            htmlFor="exampleInputEmail1"
-                            className="text-uppercase"
-                          >
-                            Contact Number
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder=""
-                            value={this.state.userData.primaryContact}
-                            onChange={this.handleEmailChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label
-                            htmlFor="exampleInputEmail1"
-                            className="text-uppercase"
-                          >
-                            Shop Name
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder=""
-                            value={"Rich Look"}
-                            onChange={this.handleEmailChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label
-                            htmlFor="exampleInputEmail1"
-                            className="text-uppercase"
-                          >
-                            Shop Contact Number
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder=""
-                            value={"011410897"}
-                            onChange={this.handleEmailChange}
-                          />
-                        </div>
-                        <div
-                          className="alert alert-danger alert-dismissible"
-                          style={
-                            this.state.errorMessage
-                              ? { display: "block" }
-                              : { display: "none" }
-                          }
-                        >
-                          <strong>OOPS!</strong> {this.state.errorMessage}
-                        </div>
-                        <div className="form-check">
-                          <button
-                            type="submit"
-                            className="btn btn-login float-right"
-                            onClick={this.handleSubmit}
-                          >
-                            Update
-                          </button>
-                        </div>
-                        <div className="form-group text-center register" />
-                      </form>
+                            <strong>OOPS!</strong> {this.state.errorMessage}
+                          </div>
+                          <div className="form-check">
+                            <button
+                              type="submit"
+                              className="btn btn-login float-right"
+                              onClick={this.handleSubmit}
+                            >
+                              Update
+                            </button>
+                          </div>
+                          <div className="form-group text-center register" />
+                        </form>
                       </Col>
                     </Row>
                   </TabPane>
                   <TabPane tabId="2">
                     <Row>
                       <Col sm="6">
-                      <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                        <Card
+                          body
+                          inverse
+                          style={{
+                            backgroundColor: "#333",
+                            borderColor: "#333"
+                          }}
+                        >
                           <CardTitle>Emarold</CardTitle>
                           <CardText>
-                          <div className="image-1">
-                          <ReactImageMagnify
-                            {...{
-                              smallImage: {
-                                alt: "Wristwatch by Ted Baker London",
-                                isFluidWidth: true,
-                                src: "shirt3.jpeg"
-                              },
-                              largeImage: {
-                                src: "shirt3.jpeg",
-                                width: 1200,
-                                height: 1800
-                              },
-                              enlargedImagePosition: "over"
-                            }}
-                          />
-                        </div>
-                        <ul class="list-unstyled mt-3 mb-4">
-                          <li>Size: 16 inch</li>
-                          <li>Color: Checked</li>
-                          <li>Type: Loose-fit</li>
-                        </ul>
+                            <div className="image-1">
+                              <ReactImageMagnify
+                                {...{
+                                  smallImage: {
+                                    alt: "Wristwatch by Ted Baker London",
+                                    isFluidWidth: true,
+                                    src: "shirt3.jpeg"
+                                  },
+                                  largeImage: {
+                                    src: "shirt3.jpeg",
+                                    width: 1200,
+                                    height: 1800
+                                  },
+                                  enlargedImagePosition: "over"
+                                }}
+                              />
+                            </div>
+                            <ul class="list-unstyled mt-3 mb-4">
+                              <li>Size: 16 inch</li>
+                              <li>Color: Checked</li>
+                              <li>Type: Loose-fit</li>
+                            </ul>
                           </CardText>
                         </Card>
                       </Col>
                       <Col sm="6">
-                        <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                        <Card
+                          body
+                          inverse
+                          style={{
+                            backgroundColor: "#333",
+                            borderColor: "#333"
+                          }}
+                        >
                           <CardTitle>Emarold</CardTitle>
                           <CardText>
-                          <div className="image-1">
-                          <ReactImageMagnify
-                            {...{
-                              smallImage: {
-                                alt: "Wristwatch by Ted Baker London",
-                                isFluidWidth: true,
-                                src: "shirt2.jpeg"
-                              },
-                              largeImage: {
-                                src: "shirt2.jpeg",
-                                width: 1200,
-                                height: 1800
-                              },
-                              enlargedImagePosition: "over"
-                            }}
-                          />
-                        </div>
-                        <ul class="list-unstyled mt-3 mb-4">
-                          <li>Size: 16 inch</li>
-                          <li>Color: Checked</li>
-                          <li>Type: Loose-fit</li>
-                        </ul>
+                            <div className="image-1">
+                              <ReactImageMagnify
+                                {...{
+                                  smallImage: {
+                                    alt: "Wristwatch by Ted Baker London",
+                                    isFluidWidth: true,
+                                    src: "shirt2.jpeg"
+                                  },
+                                  largeImage: {
+                                    src: "shirt2.jpeg",
+                                    width: 1200,
+                                    height: 1800
+                                  },
+                                  enlargedImagePosition: "over"
+                                }}
+                              />
+                            </div>
+                            <ul class="list-unstyled mt-3 mb-4">
+                              <li>Size: 16 inch</li>
+                              <li>Color: Checked</li>
+                              <li>Type: Loose-fit</li>
+                            </ul>
                           </CardText>
                         </Card>
                       </Col>
                     </Row>
                   </TabPane>
+
+                  <TabPane tabId="3">
+                    <Row>
+                      <img
+                        src="retailer-dashboard.png"
+                        className="rounded mx-auto d-block"
+                        alt="loader..."
+                      />
+                    </Row>
+                  </TabPane>
                 </TabContent>
               </div>
-
-              
             </div>
           </div>
         </div>
