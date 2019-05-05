@@ -112,7 +112,7 @@ export default class AddShirtMeasurement extends Component {
                     Seam length
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     placeholder="cm"
                     onChange={this.handlePasswordChange}
@@ -179,7 +179,7 @@ export default class AddShirtMeasurement extends Component {
                     Waist
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     placeholder="cm"
                     onChange={this.handlePasswordChange}
@@ -246,7 +246,7 @@ export default class AddShirtMeasurement extends Component {
                     Lower arm length
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     placeholder="cm"
                     onChange={this.handlePasswordChange}
@@ -315,7 +315,7 @@ export default class AddShirtMeasurement extends Component {
                     Length from shoulder
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
                     placeholder="cm"
                     onChange={this.handlePasswordChange}

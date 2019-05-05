@@ -31,6 +31,7 @@ export default class ResultsPage extends Component {
       hip: ""
     };
     this.goToHome = this.goToHome.bind(this);
+    this.goToProfile = this.goToProfile.bind(this);
     this.goToAddBodyMeasuremtns = this.goToAddBodyMeasuremtns.bind(this);
     this.calculate2DComparison = this.calculate2DComparison.bind(this);
     this.compShoulder = this.compShoulder.bind(this);
@@ -224,6 +225,10 @@ export default class ResultsPage extends Component {
     this.setState({ redirectTo: "customerHome" });
   }
 
+  goToProfile(event) {
+    this.setState({ redirectTo: "customerProfile" });
+  }
+
   goToAddBodyMeasuremtns(event) {
     this.setState({ redirectTo: "addBody" });
   }
@@ -291,6 +296,8 @@ export default class ResultsPage extends Component {
       return <Redirect to="/addBody" />;
     } else if (this.state.redirectTo === "result") {
       window.location.reload();
+    } else if (this.state.redirectTo === "customerProfile") {
+      return <Redirect to="/customerProfile" />;
     }
     if (!this.state.loadNow) {
       return (
@@ -331,7 +338,7 @@ export default class ResultsPage extends Component {
                   <img id="profile-pic" src="user.png" alt="profile-pic" />
                 </NavItem>
                 <NavItem>
-                  <NavLink id="profile-name" href="#" onClick={this.goToHome}>
+                  <NavLink id="profile-name" href="#" onClick={this.goToProfile}>
                     Guest User
                   </NavLink>
                 </NavItem>
