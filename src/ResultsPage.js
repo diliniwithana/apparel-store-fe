@@ -391,7 +391,7 @@ export default class ResultsPage extends Component {
             </div>
             <div className="col-md-6 login-sec">
               <img
-                src="comp_result_1.jpeg"
+                src="comp-res-2.png"
                 alt="image1"
                 style={{ height: "460px" }}
               />
