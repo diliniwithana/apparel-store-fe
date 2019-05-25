@@ -32,14 +32,16 @@ export default class ImageProcessingResult extends Component {
         backLengthFromMiddle: 70.9,
         backLengthFromShoulder: 65.3,
         backShoulderWidth: 46.5
-      }
+      },
+      errorMessage: ""
     };
     this.goToHome = this.goToHome.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     setTimeout(
-      function() {
+      function () {
         this.setState({ loadNow: true });
       }.bind(this),
       5000
@@ -49,6 +51,11 @@ export default class ImageProcessingResult extends Component {
   goToHome(event) {
     this.setState({ redirectTo: "retailerHome" });
   }
+
+  handleSubmit(event){
+    this.setState({ errorMessage: "Shirt measurements are added" });
+  }
+
   render() {
     if (this.state.redirectTo === "retailerHome") {
       return <Redirect to="/retailerHome" />;
@@ -387,10 +394,23 @@ export default class ImageProcessingResult extends Component {
               </button>
             </div>
           </div>
+          <div className="row">
+            <div className="col-md-12">
+              <div
+                className="alert alert-success alert-dismissible"
+                style={
+                  this.state.errorMessage
+                    ? { display: "block" }
+                    : { display: "none" }
+                }
+              >
+                <strong>Success!</strong> {this.state.errorMessage}
+              </div>
+            </div>
+          </div>
         </div>
-
         <br />
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
