@@ -163,7 +163,7 @@ export default class ResultsPage extends Component {
     if (m1 > m2) {
       return "Shirt is small";
     } else {
-      return "Shirt is large";
+      return "Loose Fit";
     }
   }
 
@@ -177,7 +177,7 @@ export default class ResultsPage extends Component {
     */
     let difference = m1 - m2;
     if (difference < 0.3) {
-      return "Small";
+      return "Too Small";
     } else if (0.8 > difference && difference >= 0.3) {
       return "Thigth fit";
     } else if (1.5 > difference && difference >= 0.8) {

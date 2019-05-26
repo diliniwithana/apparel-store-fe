@@ -115,7 +115,7 @@ export default class CustomerHome extends Component {
           <div class="card-deck mb-3 text-center">
             <div class="card mb-4 box-shadow">
               <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Emarold</h4>
+                <h4 class="my-0 font-weight-normal">Emerald</h4>
               </div>
               <div class="card-body">
                 <div className="image-1">
@@ -128,8 +128,8 @@ export default class CustomerHome extends Component {
                       },
                       largeImage: {
                         src: "shirt1.jpeg",
-                        width: 1200,
-                        height: 1800
+                        width: 1100,
+                        height: 1700
                       },
                       enlargedImagePosition: "over"
                     }}
@@ -212,7 +212,7 @@ export default class CustomerHome extends Component {
                 <br />
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Size: 16 inch</li>
-                  <li>Color: Lighr blue</li>
+                  <li>Color: Light blue- Checked</li>
                   <li>Type: Loose-fit</li>
                 </ul>
                 <button
