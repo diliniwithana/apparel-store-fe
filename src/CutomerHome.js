@@ -124,10 +124,10 @@ export default class CustomerHome extends Component {
                       smallImage: {
                         alt: "Wristwatch by Ted Baker London",
                         isFluidWidth: true,
-                        src: "shirt1.jpeg"
+                        src: "shirt4.jpeg",
                       },
                       largeImage: {
-                        src: "shirt1.jpeg",
+                        src: "shirt4.jpeg",
                         width: 1100,
                         height: 1700
                       },
@@ -161,7 +161,7 @@ export default class CustomerHome extends Component {
                       smallImage: {
                         alt: "Wristwatch by Ted Baker London",
                         isFluidWidth: true,
-                        src: "shirt2.jpeg"
+                        src: "shirt1.jpeg"
                       },
                       largeImage: {
                         src: "shirt2.jpeg",
@@ -198,10 +198,10 @@ export default class CustomerHome extends Component {
                       smallImage: {
                         alt: "Wristwatch by Ted Baker London",
                         isFluidWidth: true,
-                        src: "shirt4.jpeg"
+                        src: "shirt3.jpeg"
                       },
                       largeImage: {
-                        src: "shirt4.jpeg",
+                        src: "shirt3.jpeg",
                         width: 1200,
                         height: 1800
                       },

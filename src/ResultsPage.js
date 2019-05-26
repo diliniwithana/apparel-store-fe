@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import ReactImageMagnify from "react-image-magnify";
+import Modal from "react-responsive-modal";
 
 import {
   Collapse,
@@ -28,7 +29,8 @@ export default class ResultsPage extends Component {
       armGirth: "",
       armLength: "",
       length: "",
-      hip: ""
+      hip: "",
+      open: false
     };
     this.goToHome = this.goToHome.bind(this);
     this.goToProfile = this.goToProfile.bind(this);
@@ -42,6 +44,14 @@ export default class ResultsPage extends Component {
     this.compArmLength = this.compArmLength.bind(this);
     this.goToResult = this.goToResult.bind(this);
   }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
 
   calculate2DComparison() {
     this.shirtObj = this.state.shirtMeasurements;
@@ -290,6 +300,7 @@ export default class ResultsPage extends Component {
     //
   }
   render() {
+    const { open } = this.state;
     if (this.state.redirectTo === "customerHome") {
       return <Redirect to="/customerHome" />;
     } else if (this.state.redirectTo === "addBody") {
@@ -338,7 +349,11 @@ export default class ResultsPage extends Component {
                   <img id="profile-pic" src="user.png" alt="profile-pic" />
                 </NavItem>
                 <NavItem>
-                  <NavLink id="profile-name" href="#" onClick={this.goToProfile}>
+                  <NavLink
+                    id="profile-name"
+                    href="#"
+                    onClick={this.goToProfile}
+                  >
                     Guest User
                   </NavLink>
                 </NavItem>
@@ -348,6 +363,14 @@ export default class ResultsPage extends Component {
         </header>
         <br />
 
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <div className="row">
+            <div className="col-md-12 login-sec">
+              <img src="comp-res-2.png" alt="" />
+            </div>
+          </div>
+        </Modal>
+
         <div className="container bg-dark text-white">
           <div className="row">
             <div className="col-md-6 login-sec">
@@ -355,7 +378,7 @@ export default class ResultsPage extends Component {
                 <h4 className="my-0 font-weight-normal">Fitting Details</h4>
 
                 <h4>
-                  <button type="button" class="btn btn-warning">
+                  <button type="button" class="btn btn-warning" onClick={this.onOpenModal}>
                     Try Virtual Fitting
                   </button>
                 </h4>
